@@ -32,6 +32,43 @@
                 case "0":
                     Console.Clear();
                     return;
+                case "1":
+                    Console.Clear();
+                    Console.WriteLine("구매할 아이템 번호를 입력해주세요: ");
+                    for (int i = 0; i < GameManager.Instance.ItemList.Count; i++)
+                    {
+                        Item item = GameManager.Instance.ItemList[i];
+                        string status = item.isPurchased ? "구매완료" : $"{item.price} G";
+                        string effect = item.type == "무기" ? $"공격력 + {item.attack}" : $"방어력 + {item.defense}";
+                        Console.WriteLine($"{i + 1}.{item.name} | {item.type} | {effect} | {item.description} | {status} G");
+                    }
+
+                    Console.Write("\n>> ");
+                    string input = Console.ReadLine();
+
+                    if (int.TryParse(input, out int choice) &&
+                        choice >= 1 && choice <= GameManager.Instance.ItemList.Count)
+                    {
+                        Item selectedItem = GameManager.Instance.ItemList[choice - 1];
+
+                        if (selectedItem.isPurchased)
+                        {
+                            Console.WriteLine("\n이미 구매한 아이템입니다.");
+                        }
+                        else if (stat.Gold >= selectedItem.price)
+                        {
+                            stat.Gold -= selectedItem.price;
+                            selectedItem.isPurchased = true;
+
+                            Console.WriteLine($"\n{selectedItem.name}을(를) 구매했습니다!");
+                            GameManager.Instance.InventoryList.Add(selectedItem);
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nGold가 부족합니다.");
+                        }
+                    }
+                    break;
                 default:
                     Console.Clear();
                     Console.WriteLine("잘못된 입력입니다.");
