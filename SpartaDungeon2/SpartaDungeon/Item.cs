@@ -9,6 +9,7 @@ public class Item
     public int price;
 
     public bool isPurchased;
+    public bool isEquipped;
 
     public Item(string name, string type, int attack, int defense, string description, int price) //아이템 객체를 생성할 때 안의 정보를 초기화 해준다.
     {
@@ -19,6 +20,7 @@ public class Item
         this.description = description;
         this.price = price;
         this.isPurchased = false;
+        this.isEquipped = false;
     }
 }
 

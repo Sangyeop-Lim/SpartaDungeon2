@@ -60,6 +60,7 @@
                             stat.Gold -= selectedItem.price;
                             selectedItem.isPurchased = true;
 
+                            Console.Clear() ;
                             Console.WriteLine($"\n{selectedItem.name}을(를) 구매했습니다!");
                             GameManager.Instance.InventoryList.Add(selectedItem);
                         }

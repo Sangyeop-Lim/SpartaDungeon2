@@ -5,7 +5,7 @@
     public int Attack = 10;
     public int Defense = 5;
     public int Health = 100;
-    public int Gold = 1500;
+    public int Gold = 10000;
 
     public void Show()
     {
